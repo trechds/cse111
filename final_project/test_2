@@ -1,0 +1,109 @@
+import math
+
+def main():
+    customer_info = get_customer_info()
+    energy_consumption_average = calculate_energy_consumption()
+    irradiation = get_irradiation()
+    required_power = get_required_power(energy_consumption_average, irradiation)
+    total_power = get_total_power()
+    average_monthly_generation = get_average_monthly_generation(total_power, irradiation)
+    inverter_power = get_inverter_power(total_power)
+    inverter_phase = get_inverter_phase(inverter_power)
+    inverter_quantity = get_inverter_quantity(inverter_power)
+    roof_price = get_roof_type()
+    energy_company = get_energy_company()
+    installation_cost = calculate_installation(total_power, inverter_quantity)
+
+def get_customer_info():
+    customer_info = {}
+    customer_info['full_name'] = input("Enter the customer's full name: ")
+    customer_info['phone_number'] = input("Enter the customer's phone number: ")
+    customer_info['email'] = input("Enter the customer's email: ")
+    customer_info['city_state'] = input("Enter the customer's city-state: ")
+    customer_info['seller_name'] = input("Enter the seller's name: ")
+    customer_info['mains_phase'] = input("Enter the mains phase: ")
+    customer_info['energy_company'] = get_energy_company()
+    return customer_info
+
+def calculate_energy_consumption():
+    option = input("Do you want to enter the consumption average or do you want to calculate it? (Enter 1 or 2)\n1. Enter your own average.\n2. Enter the consumption for each month.\n")
+    if option == '1':
+        energy_consumption_average = float(input("Enter your energy consumption average in kWh: "))
+    elif option == '2':
+        months_consumption = []
+        for month in range(1, 13):
+            consumption = float(input(f"Enter consumption for month {month}: "))
+            months_consumption.append(consumption)
+        energy_consumption_average = sum(months_consumption) / len(months_consumption)
+    return energy_consumption_average
+
+def get_irradiation():
+    orientation_irradiation = {
+        "North": 112,
+        "Northeast": 110,
+        "Northwest": 110,
+        "East": 104,
+        "West": 104,
+        "South": 95,
+        "Southeast": 100,
+        "Southwest": 100
+    }
+    orientation = input("Select the panel installation orientation: ").capitalize()
+    return orientation_irradiation.get(orientation, 0)
+
+def get_required_power(energy_consumption_average, irradiation):
+    return energy_consumption_average / irradiation
+
+def get_total_power():
+    module_quantity = int(input("Enter the number of solar panels: "))
+    module_power = float(input("Enter the power of each solar panel in watts: "))
+    return module_quantity * module_power / 1000
+
+def get_average_monthly_generation(total_power, irradiation):
+    return total_power * irradiation
+
+def get_inverter_power(total_power):
+    overload = 0.30
+    inverter_power = total_power / (1 - overload)
+    power_inverters = [0.6, 1, 1.3, 1.6, 2, 4, 5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 33, 35, 40, 45, 50, 60, 75, 100]
+    inverter_power = min(power_inverters, key=lambda x:abs(x-inverter_power))
+    return inverter_power
+
+def get_inverter_phase(inverter_power):
+    if inverter_power <= 2:
+        return "Micro-inverter"
+    elif inverter_power <= 12:
+        return "Single-phase"
+    else:
+        return "Three-phase"
+
+def get_inverter_quantity(inverter_power):
+    # Calculation for inverter quantity based on requirements
+    return 1  # Placeholder value
+
+def get_roof_type():
+    roof_types = {
+        "Brasilite": {"structure_type": "Mini Rail 24cm", "price_per_module": 30},
+        "Aluzinc": {"structure_type": "Mini Rail 40cm", "price_per_module": 45},
+        "Ceramic": {"structure_type": "Colonial", "price_per_module": 130},
+        "Ground": {"structure_type": "Block", "price_per_module": 120},
+        "Slab": {"structure_type": "Steel", "price_per_module": 150}
+    }
+    roof_type = input("Enter the type of roof: ").capitalize()
+    return roof_types.get(roof_type, {}).get('price_per_module', 0)
+
+def get_energy_company():
+    energy_companies = {
+        "CPFL",
+        "RGE",
+        "Coprel",
+        "Cerfox"
+    }   
+    return input("Enter the Energy Company: ")
+
+def calculate_installation(total_power, inverter_quantity):
+    # Calculation for installation cost
+    return 0  # Placeholder value
+
+if __name__ == "__main__":
+    main()

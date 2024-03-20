@@ -1,0 +1,254 @@
+import everything needed
+
+def main()
+    Welcome to the Solar Budget of AR-TEC
+    This program will calculate your energy consumption and generate a Solar Energy Generation Proposal for your house, commerce or insdustry.
+    Let's get started!
+
+    1. Enter the customer's name.
+        input = customer_name
+    2. Enter the customer's city-state.
+        input = customer_city
+    3. On average, how much energy do you consume per month? (kWh) #user input must be an integer
+        input = energy_consumption_average
+    4. Please, select the main phase at your establishment:
+        "Single-phase"
+        "Biphasic"
+        "Three-phase"
+        # User input must match with the options, but ignore lowercase and uppercase input.
+        # Use the get_phase() function to determine...
+        input = phase
+    5. Select the panel installation structure:
+        "Brasilite"
+        "Aluzinc"
+        "Ceramic"
+        "Ground"
+        "Slab"
+        # User input must match with the options, but ignore lowercase and uppercase input.
+        # Use the get_roof_type() function to determine the values for the roofs according to the dictionary.
+        input = roof_type
+    6. Select the orientation the panels will be installed:
+        "North"
+    	"Northeast"
+    	"Northwest"
+    	"East"
+   		"West"
+   	 	"South"
+   	 	"Southeast"
+   	 	"Southwest"
+        # User input must match with the options, but ignore lowercase and uppercase input.
+        # Use the get_irradiation() function to determine the value for the orientation according to the dictionary.
+        input = oriantation
+    7. Please select the Module Power you want:
+        "550W"
+        "500W"
+        "450W"
+        "400W"
+        "350W"
+        "300W"
+        # The user should only enter integers, print an error if the input is not an integer, and repeat the question until the answer is an integer.
+        input = module_power
+
+    generate_proposal(#give the needed arguments)
+
+def determine_irradiation(#give the needed paramaters)
+	# Create a dictionary:
+		orientation_irradiation = {
+   			"North": 112,
+    		"Northeast": 110,
+    		"Northwest": 110,
+    		"East": 104,
+   		 	"West": 104,
+   	 		"South": 95,
+   	 		"Southeast": 100,
+   	 		"Southwest": 100
+		}
+    # get the user input in main() for orientation and return the irradiation according to the orientation_irradiation dictionary.
+    return irradiation
+
+def calculate_required_power(#give the needed paramaters)
+	required_power = energy_consumption_average / irradiation
+	return required_power
+
+def determine_module_quantity(#give the needed paramaters)
+    module_quantity = (energy_consumption_average + 30%) / irradiation * 1000 / module_power #round up to the next integer
+    return module_quantity
+
+def calculate_total_power(#give the needed paramaters)
+    total_power = module_quantity * module_power / 1000
+    return total_power
+    
+def get_average_monthly_generation(#give the needed paramaters)
+	average_monthly_generation = total_power * irradiation
+	return average_monthly_generation
+
+def calculate_inverter_power(#give the needed paramaters)
+	overload = 30%
+	inverter_power = total_power - overload
+        Using if statement, round to the closest number of this list: 
+        power_inverters {0.6, 1, 1.3, 1.6, 2, 4, 5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 33, 35, 40, 45, 50, 60, 75, 100}
+    return inverter_power
+    
+def determine_inverter_phase(#give the needed paramaters)
+    # create a list:
+    inverter_phase {micro-inverter, single-phase, three-phase}
+        if inverter_power =< 2
+            return micro-inverter
+        elif inverter_power =< 12:
+            return single-phase
+        elif inverter_power => 15:
+            return three-phase
+    return inverter_phase
+
+def determine_inverter_quantity(#give the needed paramaters)
+    # use the user input 'phase' to determine the inversor inverter_quantity.
+    if phase = Single-phase
+        return 1 single_phase or 1 micro-inverter
+    elif phase = Biphasic
+        return 2 inverters single-phase, or 4 micro-inverters
+    elif phase = Three-phase
+        return 1 inverter three-phase, or 3 inverters single-phase
+    else return 1
+    # if Biphasic, the 2 inverters must be the same power.
+        
+    return inverter_quantity
+
+def get_roof_type(#give the needed paramaters)
+    roof_types = {
+        "Brasilite": {"structure_type": "Mini Rail 24cm", "price_per_module": 30},
+        "Aluzinc": {"structure_type": "Mini Rail 40cm", "price_per_module": 45},
+        "Ceramic": {"structure_type": "Colonial", "price_per_module": 130},
+        "Ground": {"structure_type": "Block", "price_per_module": 120},
+        "Slab": {"structure_type": "Steel", "price_per_module": 150}
+    }
+    return roof_price
+    return structure_type
+
+def calculate_installation(#give the needed paramaters)
+    cost_hour_man = $25
+    cost_km = $1.20
+    food_per_person = $25
+    hotel_per_person = $80
+    displacement = #calculate the distance from Marau-RS to customer_city
+    employee_qnty = #calculate panels quantity
+        if module_quantity =< 10
+            return 2
+        elif module_quantity =< 30
+            return 3
+        elif  module_quantity =< 50
+            return 4
+        elif  module_quantity =< 100
+            return 5
+        else 
+            return 6
+    trips_qnty = #calculate the employee_qnty and 
+        # for every '10' module_quantity, return '1' trips_qnty
+
+    hour_man = (module_quantity / 20 * 8) + (inverter_quantity * 4)
+    work_time = hour_man / employee_qnty
+    displacement_time = (displacement / 60) * 2 * trips_qnty
+    total_time = work_time + displacement_time
+    total_days = total_time / 8
+
+    return total_installation_costs
+
+def determine_travel_hotel(#give the needed paramaters)
+    if 'travel'
+        gas = displacement * cost_km * 2 *(total_days) #round up the days before calculating
+        displacement_labor = displacement_time * employee_qnty * cost_hour_man
+        cost_food = employee_qnty * food_per_person * trips_qnty
+        travel_price = gas + displacement_labor + cost_food
+        return travel_price
+
+    if 'hotel'
+        gas = displacement * cost_km * 2
+        displacement_labor = (displacement_time * employee_qnty * cost_hour_man) / trips_qnty
+        cost_food = (employee_qnty * food_per_person * trips_qnty) * 2
+        hotel_cost = (trips_qnty - 1) * employee_qnty * hotel_per_person
+        hotel_price = gas + displacement_labor + cost_food + hotel_cost
+        return hotel_price
+
+    extra_expenses
+        if travel_price < hotel_price
+            return travel_price
+        else
+            return hotel_price
+
+    return extra_expenses
+
+def calculate_budget(#give the needed paramaters)
+    modules_price = {
+   			"550W": 1600,
+            "500W": 1400,
+            "450W": 1200,
+            "400W": 1000,
+            "350W": 800,
+            "300W": 600
+		}
+    inverters_price = {
+            0.6 : 600,
+            1 : 1000,
+            1.3 : 1500,
+            1.6 : 1600,
+            2 : 3200,
+            4 : 4000,
+            5 : 5000,
+            6 : 6000,
+            7 : 7000,
+            8 : 8000,
+            10 : 10000,
+            12 : 12000,
+            15 : 15000,
+            20 : 20000,
+            25 : 25000,
+            30 : 30000,
+            33 : 33000,
+            35 : 35000,
+            40 : 40000,
+            45 : 45000,
+            50 : 50000,
+            60 : 60000,
+            75 : 75000,
+            100 : 100000
+		}
+
+    #calculate the installation + extra_expenses + panels + inverters + structure
+
+def generate_proposal(#give the needed paramaters)
+# Please code and format a proposal like the following:
+    ARTEC - Solar Energy Proposal
+    --------------------------------------
+    Customer Name: _______________________
+    City: ________________
+    Energy Consumption: ___________ kWh/month
+    Required Power: __________ kWp
+    Date: ______________ # Take the current date
+
+    The purpose of this proposal is to install a solar energy system for your home or business,
+    providing you with renewable and sustainable energy sources. Our team will be composed of highly trained profession.
+
+    System Description:
+
+    Total System Power: __________ kWp
+    Modules Quantity: ____________
+    Modules Power: _______________ W
+    Inverter Type: _______________
+    Inverter Power: ______________ kW
+    Structure Material: _____________ for (#insert roof_type here)
+    Average Monthly Energy Generation: _____________ kWh/month
+
+    You will have a average surplus of ______ % every month
+
+    Total Project Price: $ __________.00
+    Installation Cost per Module: $ _______.00
+    Validity of the Proposal: ___________ # current date + 5 days
+
+    For more information, please contact Thiago Rech: +5554991424628
+    Thank you for your attention!
+
+    
+
+
+
+
+        

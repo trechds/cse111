@@ -1,0 +1,171 @@
+import everything needed
+
+def main()
+
+def get_customer_info()
+    1. Ask the user to enter the customer's full name.
+    2. Ask the user to enter the customer's phone number.
+    3. Ask the user to enter the customer's email.
+    4. Ask the user to enter the customer's city-state.
+    5. Ask the user to enter the seller's name.
+    6. Ask the user to select the mains phase:
+
+    7. Ask the user to enter the Energy Company:
+        # Use the get_energy_company() function.
+
+    8. We need to calculate your energy consumption average in kWh.
+        Do you want to enter the consumption average or do you want to calculate it?
+            Please enter the option: 1 or 2           
+            1. Enter your own average.
+            2. Enter the consumption for each month.
+            If 1:
+                Please enter your energy consumption average.
+                return energy_consumption_average
+            Elif 2:
+                Please enter the consumption for each month:
+                (If you have no consumption in the month, just press enter.)
+                # Use the get_energy_consumption_average() function
+                Get each month consumption
+                Calculate the average of the months
+                return energy_consumption_average
+
+    9. Ask the user to select the panel installation structure:
+        "Brasilite"
+        "Aluzinc"
+        "Ceramic"
+        "Ground"
+        "Slab"
+        # Ignore lowercase and uppercase
+        # Use the get_roof_type() function to determine the values for the roofs according to the dictionary.
+
+    10. Aske the user to select the oriantation the panels will be installed:
+        "North"
+    	"Northeast"
+    	"Northwest"
+    	"East"
+   		"West"
+   	 	"South"
+   	 	"Southeast"
+   	 	"Southwest"
+        # Ignore lowercase and uppercase
+        # Use the get_irradiation() function to determine the value for the orienation according to the dictionary.
+
+def get_energy_consumption_average()
+	# Get each month consumption
+	# Calculate the average of the months
+	return energy_consumption_average
+
+def get_irradiation()
+	# Create a dictionary:
+		orientation_irradiation = {
+   			"North": 112,
+    		"Northeast": 110,
+    		"Northwest": 110,
+    		"East": 104,
+   		 	"West": 104,
+   	 		"South": 95,
+   	 		"Southeast": 100,
+   	 		"Southwest": 100
+		}
+    return irradiation
+
+def get_required_power()
+	required_power = energy_consumption_average / irradiation
+	return required_power
+
+def get_total_power()
+    total_power = module_quantity * module_power / 1000
+    return total_power
+    
+def get_average_monthly_generation()
+	average_monthly_generation = total_power * irradiation
+	return average_monthly_generation
+
+def get_inverter_power()
+	overload = 30%
+	inverter_power = total_power - overload
+        Using if statement, round to the closest number of this list: 
+        power_inverters {0.6, 1, 1.3, 1.6, 2, 4, 5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 33, 35, 40, 45, 50, 60, 75, 100}
+    return inverter_power
+    
+def get_inverter_phase()
+    inverter_phase = 
+        if inverter_power =< 2
+            return micro-inverter
+        elif inverter_power =< 12:
+            return single-phase
+        elif inverter_power => 15:
+            return Three-phase
+    return inverter_phase
+
+def get_inverter_quantity()
+    return inverter_quantity
+
+def get_roof_type()
+    roof_types = {
+        "Brasilite": {"structure_type": "Mini Rail 24cm", "price_per_module": 30},
+        "Aluzinc": {"structure_type": "Mini Rail 40cm", "price_per_module": 45},
+        "Ceramic": {"structure_type": "Colonial", "price_per_module": 130},
+        "Ground": {"structure_type": "Block", "price_per_module": 120},
+        "Slab": {"structure_type": "Steel", "price_per_module": 150}
+    }
+    return roof_price
+
+def get_energy_company()
+    energy_companies = {
+        "CPFL",
+        "RGE",
+        "Coprel",
+        "Cerfox"
+    }   
+    return energy_company
+
+def calculate_installation()
+    cost_hour_man = $25
+    cost_km = $1.20
+    food_per_person = $25
+    hotel_per_person = $80
+    displacement = #calculate the distance from Marau-RS to customer_city
+    employee_qnty = #calculate panels quantity
+        if module_quantity =< 10
+            return 2
+        elif module_quantity =< 30
+            return 3
+        elif  module_quantity =< 50
+            return 4
+        elif  module_quantity =< 100
+            return 5
+        else 
+            return 6
+    trips_qnty = #calculate the employee_qnty and 
+        # for every '10' module_quantity, return '1' trips_qnty
+
+    hour_man = (module_quantity / 20 * 8) + (inverter_quantity * 4)
+    work_time = hour_man / employee_qnty
+    displacement_time = (displacement / 60) * 2 * trips_qnty
+    total_time = work_time + displacement_time
+    total_days = total_time / 8
+
+def determine_travel_hotel()
+    if 'travel'
+        gas = displacement * cost_km * 2 *(total_days) #round up the days before calculating
+        displacement_labor = displacement_time * employee_qnty * cost_hour_man
+        cost_food = employee_qnty * food_per_person * trips_qnty
+        travel_price = gas + displacement_labor + cost_food
+        return travel_price
+
+    if 'hotel'
+        gas = displacement * cost_km * 2
+        displacement_labor = (displacement_time * employee_qnty * cost_hour_man) / trips_qnty
+        cost_food = (employee_qnty * food_per_person * trips_qnty) * 2
+        hotel_cost = (trips_qnty - 1) * employee_qnty * hotel_per_person
+        hotel_price = gas + displacement_labor + cost_food + hotel_cost
+        return hotel_price
+
+    extra_expenses
+        if travel_price < hotel_price
+            return travel_price
+        else
+            return hotel_price
+
+    return extra_expenses

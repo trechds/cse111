@@ -1,0 +1,41 @@
+Second Report for a Student Chosen Project
+
+Do the following:
+
+1. In the table below, list the dates, amount of time spent, and
+description of the work that you did on your project. Follow the example
+that is in the first row of the table below. Include the time you spent
+doing any of the following:
+    a. discussing your project with your teacher, tutor, or fellow students
+    b. researching by reading articles and watching applicable videos
+    c. designing your project by drawing diagrams and other applicable documents
+    d. writing experimental code
+    d. writing code for your project
+    e. writing test functions
+    f. debugging your code
+    g. any other activity that helped you complete your project
+
+================= Example =================
+            Time Spent
+   Date       (hours)   Description of Work
+----------  ----------  -------------------------
+2024-02-10      2       Writing the Proposal.
+2024-02-12      2       Creating the Wireframe, the Pseudocode, and the Programming Logic.
+2024-02-13      3       Determining and Creating the Functions with initial Logic.
+2024-02-14      3       Determinig the Variables, and Researching some articles.
+2024-02-15      5       Calculations and Figuring out how to link the Functions.
+2024-02-16      5       Correcting the Calculations based on tests.
+2024-02-17      4       Testing the whole Program, and finding errors.
+2024-02-19      6       Exploring the Programming Logic.
+2024-02-20      8       watching some videos and Reading materials to solve some puzzles.
+2024-02-21      10      Reorganizing the Functions, Understanding better the Logic and Recalculating some parts.
+2024-02-22      12      Testing functions, Testing the Program and Debugging.
+2024-02-23      3       Finishing the Main Version, and Trying to create another version with the GUI.
+Total Hours:    63      The Program is working without any errors. Testing Functions passed with 100%.
+================= Example =================
+
+
+
+2. In Canvas, submit this completed text file, your Python program, your
+Python test file, and any project data files such as .txt and .csv files and
+link to video walkthrough if needed.

@@ -1,0 +1,39 @@
+def main()
+
+def get_customer_info()
+
+def get_consumption_energy_average()
+	1. get each month consumption
+	2. calculate the average of the months
+	
+	return average_consumption
+
+def get_power_needed()
+	1. power_needed = average_consumption / irratiation
+
+	return power_needed
+
+def get_average_generation()
+	1. total_power = module_quantity * module_power / 1000
+	2. average_generation = total_power * irradiation
+
+	return average_generation
+
+def get_irradiation()
+	1. Create a dictionary:
+		guidance_radiation = {
+   			"North": 112,
+    			"Northeast": 110,
+    			"Northwest": 110,
+    			"East": 104,
+   		 	"West": 104,
+   	 		"South": 95,
+   	 		"Southeast": 100,
+   	 		"Southwest": 100
+		}
+
+def get_inverter()
+	1. overload = total_power * 30%
+	2. inverter_power = total_power
+	3. inverter_quantity =
+
