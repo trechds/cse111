@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Transcrição de Áudio do WhatsApp",
+    "version": "1.0",
+    "description": "Esta extensão transcreve áudios do WhatsApp e exibe a transcrição abaixo do áudio.",
+    "permissions": ["activeTab", "storage", "scripting"],
+    "host_permissions": ["https://web.whatsapp.com/"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+      }
+    },
+    "icons": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://web.whatsapp.com/*"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
